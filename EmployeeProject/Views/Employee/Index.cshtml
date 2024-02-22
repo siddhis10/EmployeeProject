@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Employee>
+@using Syncfusion.EJ2
+<div>
+    <a class="btn btn-outline-warning" asp-controller="Employee" asp-action="Create">Add Employee</a>
+</div>
+<br />
+
+    <ejs-grid id="Grid" dataSource="@ViewBag.datasource" showColumnMenu="true" allowPaging="true" allowSorting="true" 
+    allowExcelExport="true" >
+        
+        <e-grid-columns>
+            <e-grid-column field="Name" headerText="Employee Name"    width="120"></e-grid-column>
+            <e-grid-column field="Salary" headerText="Salary"  width="150"></e-grid-column>
+            <e-grid-column field="PhoneNo" headerText="PhoneNo" width="130"  format="yMd"></e-grid-column>
+            <e-grid-column field="Address" headerText="Address" width="120"></e-grid-column>
+            <e-grid-column template="#template" headerText="Action"  width="120"></e-grid-column>
+        </e-grid-columns>
+    </ejs-grid>
+
+<style>
+    .e-grid {
+        font-family: sans-serif;
+    }
+</style>
+
+<script id="template" type="text/ng-template" >
+    <div> 
+       <a class="btn-sm btn-outline-warning" href="/Employee/Create?id=${Id}">
+           Edit</a>&nbsp;
+        <a class="btn-sm btn-outline-danger" href="/Employee/DeleteEmp?id=${Id}">Delete</a>
+      
+    </div>
+</script>
+@section Scripts {
+    <script src="https://cdn.syncfusion.com/ej2/18.4.40/dist/ej2.min.js"></script>
+    <link href="https://cdn.syncfusion.com/ej2/18.4.40/material.css" rel="stylesheet" />
+   
+}
+
+@* <div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>PhoneNo</th>
+            <th>Address</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.Id</td>
+                <td>@emp.Name</td>
+                <td>@emp.Salary</td>
+                <td>@emp.PhoneNo</td>
+                <td>@emp.Address</td>
+                <td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Employee" asp-action="Create" asp-route-id="@emp.Id">Edit</a>
+                    <a class="btn btn-danger" asp-controller="Employee" asp-action="DeleteEmp" asp-route-id="@emp.Id">Delete</a>
+                
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+</div> *@

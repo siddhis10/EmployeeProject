@@ -1,0 +1,108 @@
+﻿@model EmployeeProject.ViewModels.EmployeeVM
+
+<div class="row justify-content-center">
+    <div class="col-md-6 ">
+
+        <div class="card">
+            <div class="card-header"> 
+                <div class="card-title">
+                    <h2 class="card-text text-center text-success" >Add Employee</h2>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <form method="post" asp-controller="Employee" asp-action="Create">
+                    <input asp-for="Employee.Id" hidden/>
+                    <div class="row g-gs">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-label"><b>Name</b></label>
+                                <input asp-for="Employee.Name" class="form-control"/>
+                                <span asp-validation-for="Employee.Name" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-label"><b>Address</b></label>
+                                <input asp-for="Employee.Address" class="form-control"  />
+                                <span asp-validation-for="Employee.Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <br />
+                    <div class="row g-gs">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-label "><b>PhoneNo</b></label>
+                                <input asp-for="Employee.PhoneNo" type="number" class="form-control" onblur="CheckPhoneLength(this)" />
+                                <label  id="Phoneno" class="text-danger"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <label class="form-label text-black"><b>Salary</b></label>
+                                <input asp-for="Employee.Salary" class="form-control" />
+                                <span asp-validation-for="Employee.Salary" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                   
+                    <div class="form-group">
+                        <label class="form-label"><b>Department</b></label>
+                        <select asp-for="Employee.DId" asp-items="@Model.DepartmentList" class="form-control" class="form-select" >
+                            <option disabled selected>Select Department</option>
+                        </select>
+                        @* <span asp-validation-for="Employee.DId" class="text-danger"></span> *@
+                    </div>
+                    <br />
+
+                    <div class="card-footer text-end">
+                        <button class="btn btn-success" type="submit">Save</button>
+                        <a asp-controller="Employee" asp-action="Index" class="btn btn-danger" >Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    .card {
+        font-family: sans-serif;
+    }
+</style>
+
+@* 
+<script>
+
+    $(document).ready(function () {
+
+        CheckPhoneLength();
+
+
+    })
+   
+</script> *@
+<script>
+
+
+    function CheckPhoneLength(Phone) 
+    {
+        debugger;
+        if (Phone.value.length < 10 || Phone.value.length >= 15) {
+            $('#Phoneno').text("Phone No length should be between 10-15");
+        }
+        else {
+            $('#Phoneno').text("");
+        }
+
+    }
+
+</script>
